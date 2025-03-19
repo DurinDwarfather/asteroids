@@ -1,7 +1,8 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame, constants
+import pygame, constants, circleshape
+import player
 screen_width = constants.SCREEN_WIDTH
 screen_height = constants.SCREEN_HEIGHT
 game_on = True
@@ -24,7 +25,14 @@ def main():
     print("Starting Asteroids!")
     print(f"Screen width: {screen_width}")
     print(f"Screen height: {screen_height}")
+    # Initiate player spawn at the center of the screen
+    x = constants.SCREEN_WIDTH / 2
+    y = constants.SCREEN_HEIGHT / 2
+    player = player(x, y)
+    
+    # Initiate game loop
     pygame.init()
+    Pl
     clock
     game_loop()
         
