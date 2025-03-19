@@ -5,8 +5,9 @@ import pygame, constants
 screen_width = constants.SCREEN_WIDTH
 screen_height = constants.SCREEN_HEIGHT
 game_on = True
-
-
+dt = 0
+refresh_rate = 60
+clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 def game_loop():
     while game_on == True:
@@ -16,12 +17,15 @@ def game_loop():
             if event.type == pygame.QUIT: # and the event.type is pygame.quit - quit the game
                 return
 
+        clock.tick(60)
+
 
 def main():
     print("Starting Asteroids!")
     print(f"Screen width: {screen_width}")
     print(f"Screen height: {screen_height}")
     pygame.init()
+    clock
     game_loop()
         
     
