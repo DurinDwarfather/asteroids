@@ -10,30 +10,32 @@ dt = 0
 refresh_rate = 60
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
+x = constants.SCREEN_WIDTH / 2
+y = constants.SCREEN_HEIGHT / 2
+player_object = player.Player(x, y)
+
+
 def game_loop():
+    global dt
     while game_on == True:
-        pygame.display.flip() # builds the game screen
+        dt = clock.tick(60) / 1000.0 # convert miliseconds to seconds
+        
+        screen.fill("black") # fills screen with black background
+        player_object.draw(screen) # draws the player on the background
+        player_object.update(dt) # allows the player to rorate left and right
+        pygame.display.flip() # refreshes the game screen
 
         for event in pygame.event.get(): # In the event pygame.event.get is called
             if event.type == pygame.QUIT: # and the event.type is pygame.quit - quit the game
                 return
-
-        clock.tick(60)
 
 
 def main():
     print("Starting Asteroids!")
     print(f"Screen width: {screen_width}")
     print(f"Screen height: {screen_height}")
-    # Initiate player spawn at the center of the screen
-    x = constants.SCREEN_WIDTH / 2
-    y = constants.SCREEN_HEIGHT / 2
-    player = player(x, y)
-    
     # Initiate game loop
     pygame.init()
-    Pl
-    clock
     game_loop()
         
     
