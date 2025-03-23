@@ -36,6 +36,13 @@ def game_loop():
         for draw in drawables:
             draw.draw(screen) # draws the player on the background
         updatable.update(dt) # allows the player to rorate left and right
+        
+        for asteroid in asteroids:
+            if player_object.collision_check(asteroid):
+                print("Game over!")
+                import sys
+                sys.exit() # Ends the game
+        
         pygame.display.flip() # refreshes the game screen
 
         for event in pygame.event.get(): # In the event pygame.event.get is called
