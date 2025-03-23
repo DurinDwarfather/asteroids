@@ -1,15 +1,17 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame, constants, circleshape, player
+import pygame, constants, circleshape, player, asteroid, asteroidfield
 
 #defines object grouping
 updatable = pygame.sprite.Group()
 drawables = pygame.sprite.Group()
-
+asteroids = pygame.sprite.Group()
 
 #defines group membership
 player.Player.containers = (updatable, drawables)
+asteroidfield.AsteroidField.containers = (updatable,)
+asteroid.Asteroid.containers = (asteroids, updatable, drawables)
 
 game_on = True #creates the run condition for the while loop.
 dt = 0 # creates the detla time variable to be used elseware. 
@@ -23,6 +25,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 x = constants.SCREEN_WIDTH / 2
 y = constants.SCREEN_HEIGHT / 2
 player_object = player.Player(x, y)
+asteroid_object = asteroidfield.AsteroidField()
 
 def game_loop():
     global dt
@@ -30,8 +33,8 @@ def game_loop():
         dt = clock.tick(60) / 1000.0 # convert miliseconds to seconds
 
         screen.fill("black") # fills screen with black background
-        for dawn in drawables:
-            dawn.draw(screen) # draws the player on the background
+        for draw in drawables:
+            draw.draw(screen) # draws the player on the background
         updatable.update(dt) # allows the player to rorate left and right
         pygame.display.flip() # refreshes the game screen
 
