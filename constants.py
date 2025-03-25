@@ -1,12 +1,18 @@
+#screen construct info
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
+#asteroid parameters
 ASTEROID_MIN_RADIUS = 20
 ASTEROID_KINDS = 3
 ASTEROID_SPAWN_RATE = 0.8  # seconds
 ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
 
+# player object parameters
 PLAYER_RADIUS = 20
 PLAYER_TURN_SPEED = 300
-
 PLAYER_SPEED = 200
+
+#player projectile parameters
+SHOT_RADIUS = 5
+PLAYER_SHOOT_SPEED = 500
