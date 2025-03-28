@@ -13,7 +13,7 @@ shots_group = pygame.sprite.Group()
 player.Player.containers = (updatable, drawables)
 asteroidfield.AsteroidField.containers = (updatable,)
 asteroid.Asteroid.containers = (asteroids, updatable, drawables)
-shot.Shot.containers = (shots_group, drawables, updatable,d)
+shot.Shot.containers = (shots_group, drawables, updatable,)
 
 game_on = True #creates the run condition for the while loop.
 dt = 0 # creates the detla time variable to be used elseware. 
@@ -45,6 +45,12 @@ def game_loop():
                 import sys
                 sys.exit() # Ends the game
         
+        for asteroid in asteroids:
+            for shot in shots_group:
+                if pygame.sprite.collide_rect(asteroid, shot):
+                    shot.kill()  # Remove the bullet
+                    asteroid.split()  # Call the split method instead of kill
+        
         pygame.display.flip() # refreshes the game screen
 
         for event in pygame.event.get(): # In the event pygame.event.get is called
@@ -60,9 +66,6 @@ def main():
     pygame.init()
     game_loop()
         
-    
-
-
 
 if __name__ == "__main__":
     main()
